@@ -27,7 +27,7 @@ Derailleur.mainPage = SC.Page.design({
         contentBinding: 'Derailleur.torrentsController.arrangedObjects',
         selectionBinding: 'Derailleur.torrentsController.selection',
 
-        contentValueKey: "name",
+        exampleView: Derailleur.TorrentListItemView,
         rowHeight: 50
       })
     }),
