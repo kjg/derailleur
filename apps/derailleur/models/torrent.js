@@ -19,6 +19,7 @@ Derailleur.Torrent = SC.Record.extend(
   totalSize: SC.Record.attr(Number),
   sizeWhenDone: SC.Record.attr(Number),
   haveValid: SC.Record.attr(Number),
-  leftUntilDone: SC.Record.attr(Number)
+  leftUntilDone: SC.Record.attr(Number),
+  percentDone: SC.Record.attr(Number)
 
 }) ;
