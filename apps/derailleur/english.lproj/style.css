@@ -1,0 +1,13 @@
+.sc-collection-item{
+  padding: 0 10px;
+}
+
+.sc-collection-item.odd{
+  background-color: #edf3fe;
+}
+
+.sc-collection-item p {
+  margin: 0;
+  line-height: 1em;
+}
+

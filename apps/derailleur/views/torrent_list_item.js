@@ -16,30 +16,41 @@ Derailleur.TorrentListItemView = SC.View.extend(SC.ContentDisplay,
   displayProperties: 'isSelected'.w(),
   contentDisplayProperties: 'name percentDone'.w(),
 
-  childViews: 'progressBar'.w(),
+  childViews: 'name summary progressBar status'.w(),
+
+  name: SC.LabelView.extend(SC.ContentDisplay,{
+    layout: { left: 10, right: 10, top: 3, height: 20 },
+    valueBinding: '.owner*content.name'
+  }),
+
+  summary: SC.LabelView.extend(SC.ContentDisplay,{
+    layout: { left: 10, right: 10, top: 20, height: 19 },
+    value: 'summary'
+  }),
 
   progressBar: SC.ProgressView.extend(SC.ContentDisplay,{
-     layout: { value: 3, minimum: 0, maximum: 100, isIndeterminate: NO, left: 5, right: 5, top: 20, height: 8 },
-     isRunning: YES,
-     valueBinding: '.owner*content.percentDone'
+    layout: { left: 10, right: 10, top: 41, height: 10 },
+    isRunning: YES,
+    minimum: 0,
+    maximum: 100,
+    isIndeterminate: NO,
+    isEnabled: YES,
+    valueBinding: '.owner*content.percentDone'
+  }),
+
+  status: SC.LabelView.extend(SC.ContentDisplay,{
+    layout: { left: 10, right: 10, top: 51, height: 19 },
+    value: 'status'
   }),
 
   render: function(context, firstTime) {
-
-    var content = this.get('content');
-    var name = content.get('name');
-    var isSelected = this.get('isSelected');
-
-    var selected = isSelected;
     var cycle = this.get('contentIndex') % 2 === 0 ? 'even' : 'odd'
 
-    var classes = { 'sel': selected };
+    var classes = { 'sel': this.get('isSelected') };
 
-    context = context.addClass(cycle).setClass(classes).begin('label').push(name).end();
+    context = context.addClass(cycle).setClass(classes);
 
     this.renderChildViews(context, YES);
-
-    context = context.begin('p').push(content.get('percentDone')).end();
   }
 
 });
