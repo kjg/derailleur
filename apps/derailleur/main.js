@@ -19,11 +19,8 @@ Derailleur.main = function main() {
   // create multiple pages and panes.  
   Derailleur.getPath('mainPage.mainPane').append() ;
 
-  // Step 2. Set the content property on your primary controller.
-  // This will make your app come alive!
-
-  // TODO: Set the content property on your primary controller
-  // ex: .contactsController.set('content',.contacts);
+  var torrents = Derailleur.store.findAll(Derailleur.Torrent);
+  Derailleur.torrentsController.set('content', torrents);
 
 } ;
 
