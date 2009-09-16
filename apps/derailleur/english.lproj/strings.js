@@ -1,6 +1,6 @@
 // ==========================================================================
 // Project:   Derailleur Strings
-// Copyright: ©2009 My Company, Inc.
+// Copyright: ©2009 Kevin Glowacz
 // ==========================================================================
 /*globals Derailleur */
 
