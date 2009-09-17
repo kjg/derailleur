@@ -57,7 +57,7 @@ Derailleur.TorrentListItemView = SC.View.extend(SC.ContentDisplay,
 
     context = context.addClass(cycle).setClass(classes);
 
-    this.renderChildViews(context, YES);
+    sc_super();
   }
 
 });
