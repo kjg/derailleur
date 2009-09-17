@@ -28,7 +28,7 @@ Derailleur.mainPage = SC.Page.design({
         selectionBinding: 'Derailleur.torrentsController.selection',
 
         exampleView: Derailleur.TorrentListItemView,
-        rowHeight: 72
+        rowHeight: 70
       })
     }),
 

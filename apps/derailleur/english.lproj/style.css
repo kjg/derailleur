@@ -1,13 +1,24 @@
-.sc-collection-item{
+.torrent-item{
   padding: 0 10px;
 }
 
-.sc-collection-item.odd{
+.torrent-item.odd{
   background-color: #edf3fe;
 }
 
-.sc-collection-item p {
+.torrent-item p {
   margin: 0;
   line-height: 1em;
 }
 
+.torrent-item .name{
+  color: #222;
+}
+
+.torrent-item .summary, .torrent-item .status{
+  color: #666;
+}
+
+.torrent-item.sel .summary, .torrent-item.sel .status, .torrent-item.sel .name{
+  color: #fff;
+}

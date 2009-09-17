@@ -12,6 +12,7 @@
 */
 Derailleur.TorrentListItemView = SC.View.extend(SC.ContentDisplay,
 /** @scope Derailleur.TorrentListItemView.prototype */ {
+  classNames: [ 'torrent-item' ],
 
   displayProperties: 'isSelected'.w(),
   contentDisplayProperties: 'name percentDone'.w(),
@@ -19,17 +20,21 @@ Derailleur.TorrentListItemView = SC.View.extend(SC.ContentDisplay,
   childViews: 'name summary progressBar status'.w(),
 
   name: SC.LabelView.extend(SC.ContentDisplay,{
+    classNames: [ 'name' ],
     layout: { left: 10, right: 10, top: 3, height: 20 },
+    fontWeight: SC.BOLD_WEIGHT,
     valueBinding: '.owner*content.name'
   }),
 
   summary: SC.LabelView.extend(SC.ContentDisplay,{
+    classNames: [ 'summary' ],
     layout: { left: 10, right: 10, top: 20, height: 19 },
+    controlSize: SC.SMALL_CONTROL_SIZE,
     value: 'summary'
   }),
 
   progressBar: SC.ProgressView.extend(SC.ContentDisplay,{
-    layout: { left: 10, right: 10, top: 41, height: 10 },
+    layout: { left: 10, right: 10, top: 37, height: 10 },
     isRunning: YES,
     minimum: 0,
     maximum: 100,
@@ -39,7 +44,9 @@ Derailleur.TorrentListItemView = SC.View.extend(SC.ContentDisplay,
   }),
 
   status: SC.LabelView.extend(SC.ContentDisplay,{
-    layout: { left: 10, right: 10, top: 51, height: 19 },
+    classNames: [ 'status' ],
+    layout: { left: 10, right: 10, top: 49, height: 19 },
+    controlSize: SC.SMALL_CONTROL_SIZE,
     value: 'status'
   }),
 
