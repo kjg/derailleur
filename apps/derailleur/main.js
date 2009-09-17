@@ -19,7 +19,7 @@ Derailleur.main = function main() {
   // create multiple pages and panes.  
   Derailleur.getPath('mainPage.mainPane').append() ;
 
-  var torrents = Derailleur.store.findAll(Derailleur.Torrent);
+  var torrents = Derailleur.store.find(Derailleur.Torrent);
   Derailleur.torrentsController.set('content', torrents);
 
 } ;
