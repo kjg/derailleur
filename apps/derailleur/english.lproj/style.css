@@ -15,10 +15,10 @@
   color: #222;
 }
 
-.torrent-item .summary, .torrent-item .status{
+.torrent-item .details, .torrent-item .status{
   color: #666;
 }
 
-.torrent-item.sel .summary, .torrent-item.sel .status, .torrent-item.sel .name{
+.torrent-item.sel .details, .torrent-item.sel .status, .torrent-item.sel .name{
   color: #fff;
 }

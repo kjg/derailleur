@@ -17,7 +17,7 @@ Derailleur.TorrentListItemView = SC.View.extend(SC.ContentDisplay,
   displayProperties: 'isSelected'.w(),
   contentDisplayProperties: 'name percentDone'.w(),
 
-  childViews: 'name summary progressBar status'.w(),
+  childViews: 'name details progressBar status'.w(),
 
   name: SC.LabelView.extend(SC.ContentDisplay,{
     classNames: [ 'name' ],
@@ -26,11 +26,11 @@ Derailleur.TorrentListItemView = SC.View.extend(SC.ContentDisplay,
     valueBinding: '.owner*content.name'
   }),
 
-  summary: SC.LabelView.extend(SC.ContentDisplay,{
-    classNames: [ 'summary' ],
+  details: SC.LabelView.extend(SC.ContentDisplay,{
+    classNames: [ 'details' ],
     layout: { left: 10, right: 10, top: 20, height: 19 },
     controlSize: SC.SMALL_CONTROL_SIZE,
-    value: 'summary'
+    value: 'details'
   }),
 
   progressBar: SC.ProgressView.extend(SC.ContentDisplay,{
