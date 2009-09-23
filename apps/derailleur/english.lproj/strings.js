@@ -11,5 +11,9 @@
 // localized string added to this file!
 //
 SC.stringsFor('English', {
-  // "_String Key": "Localized String"
+  "_bytes":"bytes",
+  "_KB":"KB",
+  "_MB":"MB",
+  "_GB":"GB",
+  "_TB":"TB"
 }) ;
