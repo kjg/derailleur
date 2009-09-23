@@ -11,6 +11,7 @@
 // localized string added to this file!
 //
 SC.stringsFor('English', {
+  "_of": "of",
   "_bytes":"bytes",
   "_KB":"KB",
   "_MB":"MB",
