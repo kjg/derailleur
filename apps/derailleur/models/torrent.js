@@ -34,7 +34,7 @@ Derailleur.Torrent = SC.Record.extend(
     percentDone = Math.floor( ((sizeWhenDone - leftUntilDone) / sizeWhenDone) * 10000 ) / 100;
 
     return percentDone;
-  }.property('sizeWhenDone', 'leftUntilDone'),
+  }.property('sizeWhenDone', 'leftUntilDone').cacheable(),
 
   progressDetails: function(){
     var sizeWhenDone, leftUntilDone, percentDone, formattedSizeDownloaded, formattedSizeWhenDone, progressString;
@@ -48,6 +48,6 @@ Derailleur.Torrent = SC.Record.extend(
     progressString = ("%@ " +  "_of".loc() + " %@ (%@%)").fmt(formattedSizeDownloaded, formattedSizeWhenDone, this.get('percentDone'));
 
     return progressString;
-  }.property('sizeWhenDone', 'leftUntilDone')
+  }.property('sizeWhenDone', 'leftUntilDone').cacheable()
 });
 
