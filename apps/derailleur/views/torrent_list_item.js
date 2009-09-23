@@ -30,7 +30,7 @@ Derailleur.TorrentListItemView = SC.View.extend(SC.ContentDisplay,
     classNames: [ 'details' ],
     layout: { left: 10, right: 10, top: 20, height: 19 },
     controlSize: SC.SMALL_CONTROL_SIZE,
-    value: 'details'
+    valueBinding: '.owner*content.progressDetails'
   }),
 
   progressBar: SC.ProgressView.extend(SC.ContentDisplay,{
