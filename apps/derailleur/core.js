@@ -10,7 +10,7 @@
   
   @extends SC.Object
 */
-Derailleur = SC.Object.create(
+Derailleur = SC.Application.create(
   /** @scope Derailleur.prototype */ {
 
   NAMESPACE: 'Derailleur',
