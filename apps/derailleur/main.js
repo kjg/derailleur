@@ -12,6 +12,10 @@
 // See comments for some pointers on what to do next.
 //
 Derailleur.main = function main() {
+  // switch to fixtures if #fixtures in URL
+  if (window.location.hash.toString().match('fixtures')) {
+    Derailleur.store.from(SC.Record.fixtures);
+  }
 
   // Step 1: Instantiate Your Views
   // The default code here will make the mainPane for your application visible
