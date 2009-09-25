@@ -15,7 +15,7 @@ sc_require('helpers/math');
 
 Derailleur.Torrent = SC.Record.extend(
 /** @scope Derailleur.Torrent.prototype */ {
-
+  primaryKey: 'id',
   name: SC.Record.attr(String),
   status: SC.Record.attr(Number),
   totalSize: SC.Record.attr(Number),

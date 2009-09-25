@@ -7,7 +7,7 @@
 sc_require('models/torrent');
 
 Derailleur.Torrent.FIXTURES = [
-  { guid: 1,
+  { id: 1,
     name: "Enough Records - Nhoin - Rite of Passage",
     status: 4,
     totalSize: 30635793,
@@ -15,7 +15,7 @@ Derailleur.Torrent.FIXTURES = [
     haveValid: 2422545,
     leftUntilDone: 21626880 },
 
-  { guid: 2,
+  { id: 2,
     name: "ubuntu-9.04-desktop-amd64.iso",
     status: 16,
     totalSize: 730554368,
