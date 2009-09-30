@@ -30,11 +30,12 @@ Derailleur.DataSource = SC.DataSource.extend({
     else{
       SC.AlertPane.error("Could not fetch data", "Don't know how to fetch: " + query.recordType.toString(), '', "Dang");
     }
+
     return ret;
   },
 
   didFetchTorrents: function(request, params){
-    var storeKeys = [], response;
+    var storeKeys = [], existingKeys = [], noLongerExistingKeys = [], response;
     response = request.response();
 
     if(response.kindOf ? response.kindOf(SC.Error) : false) {
@@ -42,8 +43,11 @@ Derailleur.DataSource = SC.DataSource.extend({
     }
     else
     {
-      storeKeys = params.store.loadRecords(Derailleur.Torrent, response.arguments.torrents)
-      params.storeKeyArray.replace(0,0,storeKeys)
+      storeKeys = params.store.loadRecords(Derailleur.Torrent, response.arguments.torrents);
+      existingKeys = Derailleur.store.storeKeysFor(Derailleur.Torrent)
+      if(!storeKeys.isEqual(existingKeys)) this.handleRemotelyRemoved(existingKeys, storeKeys);
+
+      params.storeKeyArray.replace(0,0,storeKeys);
     }
     return YES;
   },
@@ -65,6 +69,12 @@ Derailleur.DataSource = SC.DataSource.extend({
       SC.AlertPane.error("RPC Connection Failure", response.request.responseText, '', "Dang");
     }
     return NO;
+  },
+
+  handleRemotelyRemoved: function(existingKeys, freshKeys){
+    existingKeys.forEach(function(value){
+      if( freshKeys.indexOf(value) === -1 ) Derailleur.store.pushDestroy(null, null, value);
+    });
   }
 });
 
