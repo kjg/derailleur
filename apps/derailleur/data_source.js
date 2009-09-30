@@ -44,7 +44,7 @@ Derailleur.DataSource = SC.DataSource.extend({
     else
     {
       storeKeys = params.store.loadRecords(Derailleur.Torrent, response.arguments.torrents);
-      existingKeys = Derailleur.store.storeKeysFor(Derailleur.Torrent)
+      existingKeys = Derailleur.store.storeKeysFor(Derailleur.Torrent);
       if(!storeKeys.isEqual(existingKeys)) this.handleRemotelyRemoved(existingKeys, storeKeys);
 
       params.storeKeyArray.replace(0,0,storeKeys);
