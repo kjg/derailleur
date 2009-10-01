@@ -7,6 +7,7 @@
 var torrent;
 module("Derailleur.Torrent progressDetails", {
   setup: function(){
+    Derailleur.store.from(SC.Record.fixtures);
     torrent = Derailleur.Torrent.find(Derailleur.store, 1);
   },
   teardown: function(){
