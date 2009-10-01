@@ -47,7 +47,7 @@ Derailleur.TorrentListItemView = SC.View.extend(SC.ContentDisplay,
     classNames: [ 'status' ],
     layout: { left: 10, right: 10, top: 49, height: 19 },
     controlSize: SC.SMALL_CONTROL_SIZE,
-    value: 'status'
+    valueBinding: '.owner*content.statusString'
   }),
 
   render: function(context, firstTime) {

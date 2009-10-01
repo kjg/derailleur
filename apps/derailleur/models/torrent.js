@@ -48,6 +48,24 @@ Derailleur.Torrent = SC.Record.extend(
     progressString = ("%@ " +  "_of".loc() + " %@ (%@%)").fmt(formattedSizeDownloaded, formattedSizeWhenDone, this.get('percentDone'));
 
     return progressString;
-  }.property('sizeWhenDone', 'leftUntilDone').cacheable()
+  }.property('sizeWhenDone', 'leftUntilDone').cacheable(),
+
+  statusString: function(){
+    var status = this.get('status');
+
+    switch( status ) {
+      case Derailleur.Torrent.STATUS_WAITING_TO_CHECK : return 'Waiting to verify';
+      case Derailleur.Torrent.STATUS_CHECKING :         return 'Verifying local data';
+      case Derailleur.Torrent.STATUS_DOWNLOADING:       return 'Downloading';
+      case Derailleur.Torrent.STATUS_SEEDING:           return 'Seeding';
+      case Derailleur.Torrent.STATUS_PAUSED :           return 'Paused';
+      default:                                          return 'error';
+    }
+  }.property('status').cacheable()
 });
 
+Derailleur.Torrent.STATUS_WAITING_TO_CHECK  = 1;
+Derailleur.Torrent.STATUS_CHECKING          = 2;
+Derailleur.Torrent.STATUS_DOWNLOADING       = 4;
+Derailleur.Torrent.STATUS_SEEDING           = 8;
+Derailleur.Torrent.STATUS_PAUSED            = 16;
