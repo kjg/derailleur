@@ -16,5 +16,10 @@ SC.stringsFor('English', {
   "_KB":"KB",
   "_MB":"MB",
   "_GB":"GB",
-  "_TB":"TB"
+  "_TB":"TB",
+  "_Verifying local data":"Verifying local data",
+  "_Downloading":"Downloading",
+  "_Seeding":"Seeding",
+  "_Paused":"Paused",
+  "_Error":"Error"
 }) ;

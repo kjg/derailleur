@@ -58,12 +58,12 @@ Derailleur.Torrent = SC.Record.extend(
     var status = this.get('status');
 
     switch( status ) {
-      case Derailleur.Torrent.STATUS_WAITING_TO_CHECK : return 'Waiting to verify';
-      case Derailleur.Torrent.STATUS_CHECKING :         return 'Verifying local data';
-      case Derailleur.Torrent.STATUS_DOWNLOADING:       return 'Downloading';
-      case Derailleur.Torrent.STATUS_SEEDING:           return 'Seeding';
-      case Derailleur.Torrent.STATUS_PAUSED :           return 'Paused';
-      default:                                          return 'error';
+      case Derailleur.Torrent.STATUS_WAITING_TO_CHECK : return '_Waiting to verify'.loc();
+      case Derailleur.Torrent.STATUS_CHECKING :         return '_Verifying local data'.loc();
+      case Derailleur.Torrent.STATUS_DOWNLOADING:       return '_Downloading'.loc();
+      case Derailleur.Torrent.STATUS_SEEDING:           return '_Seeding'.loc();
+      case Derailleur.Torrent.STATUS_PAUSED :           return '_Paused'.loc();
+      default:                                          return '_error'.loc();
     }
   }.property('status').cacheable()
 });
