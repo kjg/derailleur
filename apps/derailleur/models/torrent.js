@@ -37,8 +37,8 @@ Derailleur.Torrent = SC.Record.extend(
     return percentDone;
   }.property('sizeWhenDone', 'leftUntilDone').cacheable(),
 
-  progressDetails: function(){
-    var sizeWhenDone, leftUntilDone, percentDone, formattedSizeDownloaded, formattedSizeWhenDone, progressString;
+  downloadingProgress: function(){
+    var sizeWhenDone, leftUntilDone, percentDone, formattedSizeDownloaded, formattedSizeWhenDone, downloadingProgress;
 
     sizeWhenDone = this.get('sizeWhenDone');
     leftUntilDone = this.get('leftUntilDone');
@@ -46,10 +46,28 @@ Derailleur.Torrent = SC.Record.extend(
     formattedSizeDownloaded = Math.formatBytes(sizeWhenDone - leftUntilDone);
     formattedSizeWhenDone = Math.formatBytes(sizeWhenDone)
 
-    progressString = ("%@ " +  "_of".loc() + " %@ (%@%)").fmt(formattedSizeDownloaded, formattedSizeWhenDone, this.get('percentDone'));
+    downloadingProgress = ("%@ " +  "_of".loc() + " %@ (%@%)").fmt(formattedSizeDownloaded, formattedSizeWhenDone, this.get('percentDone'));
 
-    return progressString;
+    return downloadingProgress;
   }.property('sizeWhenDone', 'leftUntilDone').cacheable(),
+
+  progressDetails: function(){
+    var status, isDoneDownloading, isActive, progressDetails;
+
+    status = this.get('status');
+    isDoneDownloading = this.get('isDoneDownloading');
+    isActive = this.get('isActive');
+
+    if(!isDoneDownloading){
+      progressDetails = this.get('downloadingProgress');
+      if(isActive) progressDetails = progressDetails + ' - ' + this.get('etaString');
+    }
+    else{
+      progressDetails = "not implemented";
+    }
+    return progressDetails;
+
+  }.property('sizeWhenDone', 'leftUntilDone', 'status').cacheable(),
 
   etaString: function(){
     var eta = this.get('eta');
