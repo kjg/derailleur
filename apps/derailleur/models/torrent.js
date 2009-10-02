@@ -64,6 +64,13 @@ Derailleur.Torrent = SC.Record.extend(
     return (this.get('status') & (Derailleur.Torrent.STATUS_DOWNLOADING | Derailleur.Torrent.STATUS_SEEDING)) > 0;
   }.property('status').cacheable(),
 
+  isDoneDownloading: function(){
+    var status = this.get('status'), leftUntilDone = this.get('leftUntilDone');
+    if(status === Derailleur.Torrent.STATUS_SEEDING) return true;
+    if(leftUntilDone === 0) return true;
+    return false;
+  }.property('status', 'leftUntilDone').cacheable(),
+
   statusString: function(){
     var status = this.get('status');
 
