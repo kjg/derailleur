@@ -11,48 +11,51 @@
  *   @returns string
  */
 Math.formatBytes = function(bytes) {
-    var size;
-    var unit;
+  var size, unit;
 
-    // Terabytes (TB).
-    if ( bytes >= 1099511627776 ) {
-        size = bytes / 1099511627776;
-		unit = '_TB';
+  // Terabytes (TB).
+  if ( bytes >= 1099511627776 ) {
+    size = bytes / 1099511627776;
+    unit = '_TB';
+  }
 
-    // Gigabytes (GB).
-    } else if ( bytes >= 1073741824 ) {
-        size = bytes / 1073741824;
-		unit = '_GB';
+  // Gigabytes (GB).
+  else if ( bytes >= 1073741824 ) {
+    size = bytes / 1073741824;
+    unit = '_GB';
+  }
 
-    // Megabytes (MB).
-    } else if ( bytes >= 1048576 ) {
-        size = bytes / 1048576;
-		unit = '_MB';
+  // Megabytes (MB).
+  else if ( bytes >= 1048576 ) {
+    size = bytes / 1048576;
+    unit = '_MB';
+  }
 
-    // Kilobytes (KB).
-    } else if ( bytes >= 1024 ) {
-        size = bytes / 1024;
-		unit = '_KB';
+  // Kilobytes (KB).
+  else if ( bytes >= 1024 ) {
+    size = bytes / 1024;
+    unit = '_KB';
+  }
 
-    // The file is less than one KB
-    } else {
-        size = bytes;
-		unit = '_bytes';
-    }
+  // The file is less than one KB
+  else {
+    size = bytes;
+    unit = '_bytes';
+  }
 
-	// Single-digit numbers have greater precision
-	var precision = 1;
-	if (size < 10) {
-	    precision = 2;
-	}
-	size = Math.roundWithPrecision(size, precision);
+  // Single-digit numbers have greater precision
+  var precision = 1;
+  if (size < 10) {
+    precision = 2;
+  }
+  size = Math.roundWithPrecision(size, precision);
 
-	// Add the decimal if this is an integer
-	if ((size % 1) == 0 && unit != '_bytes') {
-		size = size + '.0';
-	}
+  // Add the decimal if this is an integer
+  if ((size % 1) == 0 && unit != '_bytes') {
+    size = size + '.0';
+  }
 
-    return size + ' ' + unit.loc();
+  return size + ' ' + unit.loc();
 };
 
 /*
