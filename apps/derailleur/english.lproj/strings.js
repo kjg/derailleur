@@ -21,5 +21,9 @@ SC.stringsFor('English', {
   "_Downloading":"Downloading",
   "_Seeding":"Seeding",
   "_Paused":"Paused",
-  "_Error":"Error"
+  "_Error":"Error",
+  "_days":"days",
+  "_hr":"hr",
+  "_min":"min",
+  "_sec":"sec"
 }) ;
