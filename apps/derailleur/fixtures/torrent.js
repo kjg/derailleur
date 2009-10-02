@@ -13,7 +13,8 @@ Derailleur.Torrent.FIXTURES = [
     totalSize: 30635793,
     sizeWhenDone: 24049425,
     haveValid: 2422545,
-    leftUntilDone: 21626880 },
+    leftUntilDone: 21626880,
+    eta: 3600 },
 
   { id: 2,
     name: "ubuntu-9.04-desktop-amd64.iso",
@@ -21,6 +22,7 @@ Derailleur.Torrent.FIXTURES = [
     totalSize: 730554368,
     sizeWhenDone: 730554368,
     haveValid: 0,
-    leftUntilDone: 730505216 }
+    leftUntilDone: 730505216,
+    eta: -1 }
 
 ];

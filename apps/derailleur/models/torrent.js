@@ -22,6 +22,7 @@ Derailleur.Torrent = SC.Record.extend(
   sizeWhenDone: SC.Record.attr(Number),
   haveValid: SC.Record.attr(Number),
   leftUntilDone: SC.Record.attr(Number),
+  eta: SC.Record.attr(Number),
 
   percentDone: function() {
     var sizeWhenDone, leftUntilDone, percentDone;
@@ -49,6 +50,15 @@ Derailleur.Torrent = SC.Record.extend(
 
     return progressString;
   }.property('sizeWhenDone', 'leftUntilDone').cacheable(),
+
+  etaString: function(){
+    var eta = this.get('eta');
+
+    if(eta < 0) return "_remaining time unknown".loc();
+
+    return Math.formatSeconds(eta) + ' ' + '_remaining'.loc();
+
+  }.property('eta').cacheable(),
 
   isActive: function(){
     return (this.get('status') & (Derailleur.Torrent.STATUS_DOWNLOADING | Derailleur.Torrent.STATUS_SEEDING)) > 0;

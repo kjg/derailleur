@@ -25,5 +25,7 @@ SC.stringsFor('English', {
   "_days":"days",
   "_hr":"hr",
   "_min":"min",
-  "_sec":"sec"
+  "_sec":"sec",
+  "_remaining time unknown":"remaining time unknown",
+  "_remaining":"remaining"
 }) ;
