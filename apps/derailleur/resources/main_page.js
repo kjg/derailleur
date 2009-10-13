@@ -4,8 +4,6 @@
 // ==========================================================================
 /*globals Derailleur */
 
-sc_require('views/torrent_list_item');
-
 // This page describes the main user interface for your application.
 Derailleur.mainPage = SC.Page.design({
 
