@@ -10,7 +10,7 @@ Derailleur.DataSource = SC.DataSource.extend({
   session_id : "",
   torrent_request: {
     'method': 'torrent-get',
-    'arguments': {'fields':['id', 'name', 'status', 'totalSize', 'sizeWhenDone', 'haveValid', 'leftUntilDone', 'eta']}
+    'arguments': {'fields':['id', 'name', 'status', 'totalSize', 'sizeWhenDone', 'haveValid', 'leftUntilDone', 'eta', 'uploadedEver', 'uploadRatio']}
   },
 
   fetch: function(store, query){

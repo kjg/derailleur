@@ -27,5 +27,8 @@ SC.stringsFor('en', {
   "_min":"min",
   "_sec":"sec",
   "_remaining time unknown":"remaining time unknown",
-  "_remaining":"remaining"
+  "_remaining":"remaining",
+  "_selected":"selected",
+  "_uploaded":"uploaded",
+  "_Ratio":"Ratio"
 }) ;

@@ -23,6 +23,8 @@ Derailleur.Torrent = SC.Record.extend(
   haveValid: SC.Record.attr(Number),
   leftUntilDone: SC.Record.attr(Number),
   eta: SC.Record.attr(Number),
+  uploadedEver: SC.Record.attr(Number),
+  uploadRatio: SC.Record.attr(Number),
 
   percentDone: function() {
     var sizeWhenDone, leftUntilDone, percentDone;
@@ -44,12 +46,27 @@ Derailleur.Torrent = SC.Record.extend(
     leftUntilDone = this.get('leftUntilDone');
 
     formattedSizeDownloaded = Math.formatBytes(sizeWhenDone - leftUntilDone);
-    formattedSizeWhenDone = Math.formatBytes(sizeWhenDone)
+    formattedSizeWhenDone = Math.formatBytes(sizeWhenDone);
 
     downloadingProgress = ("%@ " +  "_of".loc() + " %@ (%@%)").fmt(formattedSizeDownloaded, formattedSizeWhenDone, this.get('percentDone'));
 
     return downloadingProgress;
   }.property('sizeWhenDone', 'leftUntilDone').cacheable(),
+
+  uploadingProgress: function(){
+    var sizeWhenDone, formattedSizeWhenDone, uploadedEver, formattedUploadedEver, uploadingProgress;
+
+    sizeWhenDone = this.get('sizeWhenDone');
+    formattedSizeWhenDone = Math.formatBytes(sizeWhenDone);
+    uploadedEver = this.get('uploadedEver');
+    formattedUploadedEver = Math.formatBytes(uploadedEver);
+
+    uploadingProgress = "%@ " + "_selected".loc() + ", ";
+    uploadingProgress += "_uploaded".loc() + " %@ (" + "_Ratio".loc() + ": %@)";
+    uploadingProgress = uploadingProgress.fmt(formattedSizeWhenDone, formattedUploadedEver, this.get('uploadRatio'));
+
+    return uploadingProgress;
+  }.property('sizeWhenDone', 'uploadedEver', 'uploadRatio').cacheable(),
 
   progressDetails: function(){
     var status, isDoneDownloading, isActive, progressDetails;
@@ -60,11 +77,11 @@ Derailleur.Torrent = SC.Record.extend(
 
     if(!isDoneDownloading){
       progressDetails = this.get('downloadingProgress');
-      if(isActive) progressDetails = progressDetails + ' - ' + this.get('etaString');
     }
     else{
-      progressDetails = "not implemented";
+      progressDetails = this.get('uploadingProgress');
     }
+    if(isActive) progressDetails = progressDetails + ' - ' + this.get('etaString');
     return progressDetails;
 
   }.property('sizeWhenDone', 'leftUntilDone', 'status').cacheable(),
