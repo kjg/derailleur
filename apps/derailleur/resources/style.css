@@ -2,10 +2,6 @@
   padding: 0 10px;
 }
 
-.torrent-item.odd{
-  background-color: #edf3fe;
-}
-
 .torrent-item p {
   margin: 0;
   line-height: 1em;

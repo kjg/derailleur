@@ -26,6 +26,7 @@ Derailleur.mainPage = SC.Page.design({
       contentView: SC.ListView.design({
         contentBinding: 'Derailleur.torrentsController.arrangedObjects',
         selectionBinding: 'Derailleur.torrentsController.selection',
+        showAlternatingRows: YES,
 
         exampleView: Derailleur.TorrentListItemView,
         rowHeight: 70
