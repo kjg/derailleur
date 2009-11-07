@@ -16,7 +16,7 @@ Derailleur.DataSource = SC.DataSource.extend({
   fetch: function(store, query){
     var ret = [], request;
     if(query.recordType === Derailleur.Torrent){
-      request = SC.Request.postUrl('/transmission/rpc', SC.json.encode(this.torrent_request))
+      request = SC.Request.postUrl('/transmission/rpc', this.torrent_request)
         .set('isJSON', YES)
         .notify(this, this.didFetchTorrents, { store: store, query: query, storeKeyArray:ret});
 
@@ -53,12 +53,12 @@ Derailleur.DataSource = SC.DataSource.extend({
   },
 
   requestDidError: function(request){
-    var response, session_id;
+    var XHRRequest, session_id;
 
-    response = request.response();
-    session_id = response.request.getResponseHeader('X-Transmission-Session-Id');
+    XHRRequest = request.rawRequest;
+    session_id = XHRRequest.getResponseHeader('X-Transmission-Session-Id');
 
-    if(response.request.status === 409 && session_id.length > 0)
+    if(request.status === 409 && session_id.length > 0)
     {
       this.session_id = session_id;
       request.header('X-Transmission-Session-Id', session_id);
