@@ -18,7 +18,7 @@ Derailleur.DataSource = SC.DataSource.extend({
     if(query.recordType === Derailleur.Torrent){
       request = SC.Request.postUrl('/transmission/rpc', this.torrent_request)
         .set('isJSON', YES)
-        .notify(this, this.didFetchTorrents, { store: store, query: query, storeKeyArray:ret});
+        .notify(this, this.didFetchTorrents, store, query);
 
       if(this.session_id.length > 0){
         request.header('X-Transmission-Session-Id', this.session_id);
@@ -31,42 +31,42 @@ Derailleur.DataSource = SC.DataSource.extend({
       SC.AlertPane.error("Could not fetch data", "Don't know how to fetch: " + query.recordType.toString(), '', "Dang");
     }
 
-    return ret;
+    return YES;
   },
 
-  didFetchTorrents: function(request, params){
+  didFetchTorrents: function(response, store, query){
     var storeKeys = [], existingKeys = [], noLongerExistingKeys = [], response;
-    response = request.response();
 
-    if(response.kindOf ? response.kindOf(SC.Error) : false) {
-      return this.requestDidError(request);
+    if(!SC.$ok(response) ){
+      return this.requestDidError(store, query, response);
     }
     else
     {
-      storeKeys = params.store.loadRecords(Derailleur.Torrent, response.arguments.torrents);
+      storeKeys = store.loadRecords(Derailleur.Torrent, response.get('body').arguments.torrents);
       existingKeys = Derailleur.store.storeKeysFor(Derailleur.Torrent);
       if(!storeKeys.isEqual(existingKeys)) this.handleRemotelyRemoved(existingKeys, storeKeys);
+      store.dataSourceDidFetchQuery(query);
 
-      params.storeKeyArray.replace(0,0,storeKeys);
     }
     return YES;
   },
 
-  requestDidError: function(request){
+  requestDidError: function(store, query, response){
     var XHRRequest, session_id;
 
-    XHRRequest = request.rawRequest;
+    XHRRequest = response.rawRequest;
     session_id = XHRRequest.getResponseHeader('X-Transmission-Session-Id');
 
-    if(request.status === 409 && session_id.length > 0)
+    if(response.status === 409 && session_id.length > 0)
     {
       this.session_id = session_id;
-      request.header('X-Transmission-Session-Id', session_id);
-      request.send();
+      response.request.header('X-Transmission-Session-Id', session_id);
+      response.request.send();
     }
     else
     {
-      SC.AlertPane.error("RPC Connection Failure", response.request.responseText, '', "Dang");
+      store.dataSourceDidErrorQuery(query, response);
+      SC.AlertPane.error("RPC Connection Failure", response.responseText, '', "Dang");
     }
     return NO;
   },
