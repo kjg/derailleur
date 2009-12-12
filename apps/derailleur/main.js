@@ -25,7 +25,7 @@ Derailleur.main = function main() {
 
   var torrents = Derailleur.store.find(Derailleur.Torrent);
   Derailleur.torrentsController.set('content', torrents);
-  Derailleur.torrentsController.set('isRefreshing', YES);
+  //Derailleur.torrentsController.set('isRefreshing', YES);
 
 } ;
 
